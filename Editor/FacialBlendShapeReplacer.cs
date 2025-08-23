@@ -19,9 +19,9 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         /// <returns>変換されたアニメーションクリップ</returns>
         public AnimationClip Execute(AvatarBlendShape sourceAvatar, AvatarBlendShape targetAvatar, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShapeList)
         {
-
             var newClip = new AnimationClip();
             var bindings = AnimationUtility.GetCurveBindings(targetClip);
+            var universalBlendShapeMap = ResolveBlendShape(sourceAvatar.universalBlendShapeMap, targetAvatar.universalBlendShapeMap);
             foreach (var binding in bindings)
             {
                 var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
@@ -35,8 +35,9 @@ namespace Gokoukotori.FacialBlendShapeReplacer
 
                     // 名称がイコールとなるものはjsonに記載しない
                     // つまりそのまま転記する
-                    var targetBlendShapes = sourceAvatar.sourceBlendShapeMap.Find(x => ("blendShape." + x.source) == binding.propertyName);
-                    if (targetBlendShapes is null)
+                    var notExistblendShape = sourceAvatar.notExistblendShapeMap.Find(x => ("blendShape." + x.source) == binding.propertyName);
+                    var universalBlendShape = universalBlendShapeMap.Find(x => ("blendShape." + x.target) == binding.propertyName);
+                    if (notExistblendShape is null && universalBlendShape is null)
                     {
                         var newClipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
                         // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
@@ -44,20 +45,35 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                         AnimationUtility.SetEditorCurve(newClip, binding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
                         continue;
                     }
-                    // 複数ブレンドシェイプに分かれる場合の対応
-                    foreach (var universalBlendShape in targetBlendShapes.target)
+                    if (notExistblendShape is null)
                     {
-                        var blendShape = targetAvatar.targetBlendShapeMap.Find(x => x.universalBlendShape == universalBlendShape.universalBlendShape);
                         var newBinding = new EditorCurveBinding
                         {
                             path = binding.path,
                             type = binding.type,
-                            propertyName = "blendShape." + blendShape.target
+                            propertyName = "blendShape." + universalBlendShape.target
+                        };
+                        var newClipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
+                        // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
+                        // なので重複した場合は値を足す動作に変更する
+                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
+                        continue;
+                    }
+                    // 複数ブレンドシェイプに分かれる場合の対応
+                    foreach (var convertExistblendShape in notExistblendShape.target)
+                    {
+
+                        var blendShape = universalBlendShapeMap.Find(x => x.target == convertExistblendShape.universalBlendShape);
+                        var newBinding = new EditorCurveBinding
+                        {
+                            path = binding.path,
+                            type = binding.type,
+                            propertyName = "blendShape." + (blendShape is null ? convertExistblendShape.universalBlendShape : blendShape.target)
                         };
                         var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
                         // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
                         // なので重複した場合は値を足す動作に変更する
-                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, universalBlendShape.ratio)));
+                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, convertExistblendShape.ratio)));
                     }
                 }
                 else
@@ -66,6 +82,42 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 }
             }
             return newClip;
+        }
+
+        /// <summary>
+        /// 考える必要があるのは 元-名寄せ表-先
+        ///                    元-名寄せ表
+        ///                       名寄せ表-先
+        /// のパターン
+        /// </summary>
+        /// <param name="sourceUniversalBlendShapeMap"></param>
+        /// <param name="targetUniversalBlendShapeMap"></param>
+        /// <returns></returns>
+        private List<TargetBlendShape> ResolveBlendShape(List<TargetBlendShape> sourceUniversalBlendShapeMap, List<TargetBlendShape> targetUniversalBlendShapeMap)
+        {
+            // 元-名寄せ表-先
+            var query1 = sourceUniversalBlendShapeMap
+            .Join(
+                targetUniversalBlendShapeMap,
+                s => s.universalBlendShape,
+                t => t.universalBlendShape,
+                (s, t) => new TargetBlendShape
+                {
+                    universalBlendShape = s.target,
+                    target = t.target
+                }
+            ).Select(x => new TargetBlendShape
+            {
+                universalBlendShape = x.universalBlendShape,
+                target = x.target
+            }).ToList();
+            // 元-名寄せ表
+            var query2 = sourceUniversalBlendShapeMap.Where(x => !query1.Exists(Y => Y.target == x.target)).ToList();
+            //   名寄せ表-先
+            var query3 = targetUniversalBlendShapeMap.Where(x => !query1.Exists(Y => Y.universalBlendShape == x.target)).ToList();
+            query1.AddRange(query2);
+            query1.AddRange(query3);
+            return query1;
         }
 
         /// <summary>

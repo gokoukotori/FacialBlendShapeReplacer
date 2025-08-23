@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using System;
-
+using System.Collections.Generic;
 
 namespace Gokoukotori.FacialBlendShapeReplacer
 {
@@ -16,10 +15,13 @@ namespace Gokoukotori.FacialBlendShapeReplacer
     {
         public int avatarId;
         public string avatarName;
-        public List<BlendShapeMap> sourceBlendShapeMap;
-        public List<TargetBlendShape> targetBlendShapeMap;
+        public List<BlendShapeMap> notExistblendShapeMap;
+        public List<TargetBlendShape> universalBlendShapeMap;
         public List<string> excludeBlendShapeList;
     }
+    /// <summary>
+    /// 複数のブレンドシェイプで合成したい場合
+    /// </summary>
     [Serializable]
     public class BlendShapeMap
     {
@@ -32,6 +34,11 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         public string universalBlendShape;
         public float ratio;
     }
+    /// <summary>
+    /// 原則1:1
+    /// それ以外はどうやっても機械的に対応できません
+    /// 例えばuniversalBlendShapeに対してtargetが複数あった場合、どのシェイプキーに加算すれば良いか判断はできないでしょ？
+    /// </summary>
     [Serializable]
     public class TargetBlendShape
     {

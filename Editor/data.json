@@ -520,10 +520,18 @@
         {
             "avatarId": 1,
             "avatarName": "ライム",
-            "sourceBlendShapeMap": [
+            "notExistblendShapeMap": [
                 {
                     "source": "Option_heart",
                     "target": [
+                        {
+                            "universalBlendShape": "Option_shy_1",
+                            "ratio": 1
+                        },
+                        {
+                            "universalBlendShape": "Option_shy_2",
+                            "ratio": 1
+                        },
                         {
                             "universalBlendShape": "Option_shy_3",
                             "ratio": 1
@@ -531,10 +539,14 @@
                     ]
                 }
             ],
-            "targetBlendShapeMap": [
+            "universalBlendShapeMap": [
                 {
-                    "universalBlendShape": "Option_heart",
-                    "target": "Option_heart"
+                    "target": "Option_shy_3",
+                    "universalBlendShape": "Option_heart"
+                },
+                {
+                    "target": "Option_shy_2",
+                    "universalBlendShape": "Option_shy_3"
                 }
             ],
             "excludeBlendShapeList": [
@@ -548,12 +560,12 @@
         {
             "avatarId": 2,
             "avatarName": "シフォン",
-            "sourceBlendShapeMap": [
+            "notExistblendShapeMap": [
             ],
-            "targetBlendShapeMap": [
+            "universalBlendShapeMap": [
                 {
-                    "universalBlendShape": "Option_shy_3",
-                    "target": "Option_shy_3"
+                    "target": "Option_shy_2",
+                    "universalBlendShape": "Option_shy_3"
                 }
             ],
             "excludeBlendShapeList": [
