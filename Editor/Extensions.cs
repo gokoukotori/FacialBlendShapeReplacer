@@ -10,6 +10,7 @@ using System;
 
 namespace Gokoukotori.FacialBlendShapeReplacer
 {
+    
     public static class StringExtension
     {
         /// <summary>

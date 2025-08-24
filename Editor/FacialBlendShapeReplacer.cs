@@ -45,13 +45,14 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                         AnimationUtility.SetEditorCurve(newClip, binding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
                         continue;
                     }
+                    // 名寄せのみ行う
                     if (notExistblendShape is null)
                     {
                         var newBinding = new EditorCurveBinding
                         {
                             path = binding.path,
                             type = binding.type,
-                            propertyName = "blendShape." + universalBlendShape.target
+                            propertyName = "blendShape." + universalBlendShape.universalBlendShape
                         };
                         var newClipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
                         // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
@@ -68,7 +69,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                         {
                             path = binding.path,
                             type = binding.type,
-                            propertyName = "blendShape." + (blendShape is null ? convertExistblendShape.universalBlendShape : blendShape.target)
+                            propertyName = "blendShape." + (blendShape is null ? convertExistblendShape.universalBlendShape : blendShape.universalBlendShape)
                         };
                         var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
                         // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
@@ -99,12 +100,12 @@ namespace Gokoukotori.FacialBlendShapeReplacer
             var query1 = sourceUniversalBlendShapeMap
             .Join(
                 targetUniversalBlendShapeMap,
-                s => s.universalBlendShape,
-                t => t.universalBlendShape,
-                (s, t) => new TargetBlendShape
+                source => source.universalBlendShape,
+                target => target.universalBlendShape,
+                (source, target) => new TargetBlendShape
                 {
-                    universalBlendShape = s.target,
-                    target = t.target
+                    universalBlendShape = source.target,
+                    target = target.target
                 }
             ).Select(x => new TargetBlendShape
             {
@@ -112,9 +113,13 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 target = x.target
             }).ToList();
             // 元-名寄せ表
-            var query2 = sourceUniversalBlendShapeMap.Where(x => !query1.Exists(Y => Y.target == x.target)).ToList();
+            var query2 = sourceUniversalBlendShapeMap.Where(source => !query1.Exists(Y => Y.target == source.target)).ToList();
             //   名寄せ表-先
-            var query3 = targetUniversalBlendShapeMap.Where(x => !query1.Exists(Y => Y.universalBlendShape == x.target)).ToList();
+            var query3 = targetUniversalBlendShapeMap.Where(target => !query1.Exists(Y => Y.universalBlendShape == target.target)).Select(target => new TargetBlendShape
+            {
+                universalBlendShape = target.target,
+                target = target.universalBlendShape
+            }).ToList();
             query1.AddRange(query2);
             query1.AddRange(query3);
             return query1;
