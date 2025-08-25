@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:ScrollView name="Root" style="flex-grow: 1;">
+        <ui:VisualElement name="Header">
+            <uie:ObjectField label="変換元アバター"
+                name="sourceAvatar"
+                type="VRC.SDK3.Avatars.Components.VRCAvatarDescriptor, VRCSDK3A"/>
+            <ui:Label name="labelSourceAvatar"/>
+            <uie:ObjectField label="変換先アバター" 
+                name="targetAvatar"
+                type="VRC.SDK3.Avatars.Components.VRCAvatarDescriptor, VRCSDK3A"/>
+            <ui:Label name="labelTargetAvatar"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Body">
+                <ui:ListView virtualization-method="DynamicHeight"
+                            header-title="アニメーションクリップ"  
+                            reorder-mode="Animated"
+                            reorderable="true"
+                            show-add-remove-footer="true"
+                            show-border="true"
+                            show-foldout-header="true"
+                            name="animationClipListView"
+                            item-height="100"
+                            style="flex-grow: 1;"
+                />
+            <ui:Button text="変換" name="executeReplace"/>
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

@@ -4,6 +4,17 @@ using System.Collections.Generic;
 namespace Gokoukotori.FacialBlendShapeReplacer
 {
     [Serializable]
+    public class AvatarJson
+    {
+        public List<Avatar> avatar;
+    }
+    [Serializable]
+    public class Avatar
+    {
+        public string guid;
+        public string name;
+    }
+    [Serializable]
     public class JsonData
     {
         public List<string> universalBlendShapeList;
@@ -13,7 +24,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
     [Serializable]
     public class AvatarBlendShape
     {
-        public int avatarId;
+        public string guid;
         public string avatarName;
         public List<BlendShapeMap> notExistblendShapeMap;
         public List<TargetBlendShape> universalBlendShapeMap;

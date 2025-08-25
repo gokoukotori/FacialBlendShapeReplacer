@@ -518,7 +518,7 @@
     ],
     "avatarBlendShapeList": [
         {
-            "avatarId": 1,
+            "guid": "d4f67d46838e91b4ab2c85c94c0f472e",
             "avatarName": "ライム",
             "notExistblendShapeMap": [
                 {
@@ -1054,7 +1054,7 @@
                 },
                 {
                     "target": "O_simple",
-                    "universalBlendShape": "mouth_O_1"
+                    "universalBlendShape": "mouth_O_2"
                 },
                 {
                     "target": "mouth_smile",
@@ -1168,7 +1168,7 @@
             "excludeBlendShapeList": []
         },
         {
-            "avatarId": 2,
+            "guid": "217fa8ce35dfe0a42b9e1f182dd9d29b",
             "avatarName": "シフォン",
             "notExistblendShapeMap": [],
             "universalBlendShapeMap": [],
