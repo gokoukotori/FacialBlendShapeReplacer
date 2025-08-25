@@ -44,7 +44,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
 
         public static void ShowWindow()
         {
-            FacialBlendShapeReplacerEditorWindow window = CreateWindow<FacialBlendShapeReplacerEditorWindow>();
+            var window = CreateWindow<FacialBlendShapeReplacerEditorWindow>();
             window.Show();
         }
 

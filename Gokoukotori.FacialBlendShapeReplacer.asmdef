@@ -6,9 +6,7 @@
         "VRC.SDK3A.Editor",
         "VRC.SDKBase",
         "VRC.SDKBase.Editor",
-        "world.anlabo.mdnailtool",
-        "nadena.dev.ndmf",
-        "nadena.dev.modular-avatar.core"
+        "nadena.dev.ndmf"
     ],
     "includePlatforms": [
         "Editor"
