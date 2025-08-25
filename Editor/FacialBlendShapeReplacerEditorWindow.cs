@@ -47,7 +47,6 @@ namespace Gokoukotori.FacialBlendShapeReplacer
             var window = CreateWindow<FacialBlendShapeReplacerEditorWindow>();
             window.Show();
         }
-
         public void OnEnable()
         {
             animationClipList = new();
@@ -72,15 +71,22 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 {
                     objectType = typeof(AnimationClip)
                 };
+                field.RegisterValueChangedCallback(x =>
+                {
+                    if (field.userData is int index)
+                    {
+                        animationClipList[index] = (AnimationClip)x.newValue;
+                    }
+                });
                 return field;
             };
             _listViewAnimationClip.bindItem += (element, index) =>
             {
                 var field = (ObjectField)element;
-                field.value = animationClipList[index];
+                field.userData = index;
+                field.SetValueWithoutNotify(animationClipList[index]);
             };
             _listViewAnimationClip.itemsSource = animationClipList;
-
 
             _bottonExecuteReplace = rootVisualElement.Q<Button>("executeReplace");
             _bottonExecuteReplace.clicked += () =>
@@ -119,8 +125,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 while (true)
                 {
                     var parent = PrefabUtility.GetCorrespondingObjectFromSource(current);
-                    if (parent == null) break;
-                    if (parent == current) break;
+                    if (parent == null || parent == current) break;
                     avatarPrefabs.Add(parent);
                     current = parent;
                 }
@@ -134,14 +139,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                         break;
                     }
                 }
-                if (sourceAvatar is null || targetAvatar is null || sourceAvatar.guid == targetAvatar.guid)
-                {
-                    _bottonExecuteReplace.SetEnabled(false);
-                }
-                else
-                {
-                    _bottonExecuteReplace.SetEnabled(true);
-                }
+                _bottonExecuteReplace.SetEnabled(sourceAvatar is not null || targetAvatar is not null || sourceAvatar.guid != targetAvatar.guid);
             }
         }
     }
