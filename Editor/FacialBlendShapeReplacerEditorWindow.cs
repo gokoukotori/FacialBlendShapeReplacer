@@ -10,22 +10,22 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using VRC.SDK3.Avatars.Components;
 using System.IO;
-
+using System.Collections;
+using Newtonsoft.Json;
 
 namespace Gokoukotori.FacialBlendShapeReplacer
 {
+
     public class FacialBlendShapeReplacerEditorWindow : EditorWindow
     {
-        private const string GUID = "a6ffa1e5ab78f4e439b2977042dd913d";
         #region 外部ソース
+        private const string GUID = "a6ffa1e5ab78f4e439b2977042dd913d";
         [SerializeField]
         private TextAsset jsonAsset;
-        [SerializeField]
-        private TextAsset avatarAsset;
         #endregion
         private List<Avatar> avatarList;
 
-        private JsonData data;
+        private Global data;
         private readonly FacialBlendShapeReplacer replacer = new();
         private List<AnimationClip> animationClipList = new();
         private Avatar sourceAvatar;
@@ -50,8 +50,8 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         public void OnEnable()
         {
             animationClipList = new();
-            data = JsonUtility.FromJson<JsonData>(jsonAsset.text);
-            avatarList = JsonUtility.FromJson<AvatarJson>(avatarAsset.text).avatar;
+            data = JsonUtility.FromJson<Global>(jsonAsset.text);
+            avatarList = LoadJson<List<Avatar>>(data.avatarJsonGuid);
         }
         private void CreateGUI()
         {
@@ -87,25 +87,38 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 field.SetValueWithoutNotify(animationClipList[index]);
             };
             _listViewAnimationClip.itemsSource = animationClipList;
-
             _bottonExecuteReplace = rootVisualElement.Q<Button>("executeReplace");
             _bottonExecuteReplace.clicked += () =>
             {
                 // 保存先
                 var dir = EditorUtility.SaveFolderPanel("Save", "Assets", "");
                 if (string.IsNullOrEmpty(dir)) return;
-                var sourceAvatar = data.avatarBlendShapeList.Where(x => x.guid == this.sourceAvatar.guid).First();
-                var targetAvatar = data.avatarBlendShapeList.Where(x => x.guid == this.targetAvatar.guid).First();
+                var sourceAvatar = LoadAvatarBlendshapeInfo(this.sourceAvatar);
+                var targetAvatar = LoadAvatarBlendshapeInfo(this.targetAvatar);
                 // 変換クリップ数分
-                foreach (var item in animationClipList)
+                for (int i = 0; i < animationClipList.Count; i++)
                 {
+                    var item = animationClipList[i];
+                    EditorUtility.DisplayProgressBar("置換処理", $"{i + 1}番目を実行しています", i / animationClipList.Count
+                    );
                     var newClip = replacer.Execute(sourceAvatar, targetAvatar, item, data.excludeBlendShapeList);
                     AssetDatabase.CreateAsset(newClip, dir.AbsoluteToAssetsPath() + "/" + item.name + ".anim");
                 }
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
+                EditorUtility.ClearProgressBar();
+                EditorUtility.DisplayDialog("FacialBlendShapeReplacer", "処理が完了しました", "OK");
             };
             _bottonExecuteReplace.SetEnabled(false);
+        }
+
+        private AvatarBlendShape LoadAvatarBlendshapeInfo(Avatar avatar)
+        {
+            return LoadJson<AvatarBlendShape>(avatar.blendshapeInfoFileGuid);
+        }
+        private T LoadJson<T>(string guid)
+        {
+            return JsonConvert.DeserializeObject<T>(AssetDatabase.LoadAssetAtPath<TextAsset>(AssetDatabase.GUIDToAssetPath(guid)).text);
         }
 
         /// <summary>
