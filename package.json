@@ -1,0 +1,14 @@
+{
+    "name": "gokoukotori.facialblendshapereplace",
+    "displayName": "FacialBlendShapeReplacer",
+    "version": "0.0.1",
+    "unity": "2022.3",
+    "description": "作成途中",
+    "author": {
+        "name": "gokoukotori",
+        "url": "https://github.com/gokoukotori"
+    },
+    "url": "https://github.com/gokoukotori/FacialBlendShapeReplacer",
+    "changelogUrl": "",
+    "vpmDependencies": {}
+}
