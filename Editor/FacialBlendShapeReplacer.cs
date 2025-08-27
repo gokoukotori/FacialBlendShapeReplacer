@@ -12,16 +12,16 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         /// <summary>
         /// ソースからターゲットへブレンドシェイプを変換します。
         /// </summary>
-        /// <param name="sourceAvatar">変換元アバター</param>
-        /// <param name="targetAvatar">変換元アバター</param>
+        /// <param name="source">変換元アバター</param>
+        /// <param name="target">変換先アバター</param>
         /// <param name="targetClip">変換対象アニメーションクリップ</param>
-        /// <param name="excludeBlendShapeList">除外するブレンドシェイプ</param>
+        /// <param name="excludeBlendShape">除外するブレンドシェイプ</param>
         /// <returns>変換されたアニメーションクリップ</returns>
-        public AnimationClip Execute(AvatarBlendShape sourceAvatar, AvatarBlendShape targetAvatar, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShapeList)
+        public AnimationClip Execute(AvatarBlendShape source, AvatarBlendShape target, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShape)
         {
             var newClip = new AnimationClip();
             var bindings = AnimationUtility.GetCurveBindings(targetClip);
-            var universalBlendShapeMap = ResolveBlendShape(sourceAvatar.universalBlendShapeMap, targetAvatar.universalBlendShapeMap);
+            var universalBlendShapeMap = ResolveBlendShape(source.universalBlendShapeMap, target.universalBlendShapeMap);
             foreach (var binding in bindings)
             {
                 var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
@@ -30,52 +30,30 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 if (binding.type == typeof(SkinnedMeshRenderer) && Regex.IsMatch(binding.propertyName, @"^(blendShape\.).*") && binding.path == "Body")
                 {
                     // 対象外は除外
-                    if (excludeBlendShapeList.Count(x => ("blendShape." + x) == binding.propertyName) != 0) continue;
-                    if (sourceAvatar.excludeBlendShapeList.Count(x => ("blendShape." + x) == binding.propertyName) != 0) continue;
+                    if (excludeBlendShape.Count(x => ("blendShape." + x) == binding.propertyName) != 0) continue;
+                    if (source.excludeBlendShapeList.Count(x => ("blendShape." + x) == binding.propertyName) != 0) continue;
 
                     // 名称がイコールとなるものはjsonに記載しない
                     // つまりそのまま転記する
-                    var notExistblendShape = sourceAvatar.notExistblendShapeMap.Find(x => ("blendShape." + x.source) == binding.propertyName);
-                    var universalBlendShape = universalBlendShapeMap.Find(x => ("blendShape." + x.target) == binding.propertyName);
-                    if (notExistblendShape is null && universalBlendShape is null)
+                    var blendShapeMap = universalBlendShapeMap.Find(x => ("blendShape." + x.blendShape) == binding.propertyName);
+                    if (blendShapeMap is null)
                     {
-                        var newClipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
-                        // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
-                        // なので重複した場合は値を足す動作に変更する
-                        AnimationUtility.SetEditorCurve(newClip, binding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
+                        var clipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
+                        // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
+                        AnimationUtility.SetEditorCurve(newClip, binding, clipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, clipCurve, 1f)));
                         continue;
                     }
-                    // 名寄せのみ行う
-                    if (notExistblendShape is null)
+                    // 名寄せを行う
+                    var newBinding = new EditorCurveBinding
                     {
-                        var newBinding = new EditorCurveBinding
-                        {
-                            path = binding.path,
-                            type = binding.type,
-                            propertyName = "blendShape." + universalBlendShape.universalBlendShape
-                        };
-                        var newClipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
-                        // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
-                        // なので重複した場合は値を足す動作に変更する
-                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
-                        continue;
-                    }
-                    // 複数ブレンドシェイプに分かれる場合の対応
-                    foreach (var convertExistblendShape in notExistblendShape.target)
-                    {
-
-                        var blendShape = universalBlendShapeMap.Find(x => x.target == convertExistblendShape.universalBlendShape);
-                        var newBinding = new EditorCurveBinding
-                        {
-                            path = binding.path,
-                            type = binding.type,
-                            propertyName = "blendShape." + (blendShape is null ? convertExistblendShape.universalBlendShape : blendShape.universalBlendShape)
-                        };
-                        var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
-                        // targetBlendShapeMapで複数ブレンドシェイプ指定された場合、newCurve側のキーが重複して上書きされる可能性がある
-                        // なので重複した場合は値を足す動作に変更する
-                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, convertExistblendShape.ratio)));
-                    }
+                        path = binding.path,
+                        type = binding.type,
+                        propertyName = "blendShape." + blendShapeMap.taegetBlendShape
+                    };
+                    var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
+                    // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
+                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
+                    continue;
                 }
                 else
                 {
@@ -85,40 +63,52 @@ namespace Gokoukotori.FacialBlendShapeReplacer
             return newClip;
         }
 
+        public class BlendShapeRatioMap : BlendShapeRatio
+        {
+            public string taegetBlendShape;
+        }
         /// <summary>
         /// 考える必要があるのは 元-名寄せ表-先
         ///                    元-名寄せ表
         ///                       名寄せ表-先
         /// のパターン
         /// </summary>
-        /// <param name="sourceUniversalBlendShapeMap"></param>
-        /// <param name="targetUniversalBlendShapeMap"></param>
+        /// <param name="sourceUniversalBlendShape"></param>
+        /// <param name="targetUniversalBlendShape"></param>
         /// <returns></returns>
-        private List<TargetBlendShape> ResolveBlendShape(List<TargetBlendShape> sourceUniversalBlendShapeMap, List<TargetBlendShape> targetUniversalBlendShapeMap)
+        private List<BlendShapeRatioMap> ResolveBlendShape(List<Avatar2UniversalBlendShape> sourceUniversalBlendShape, List<Avatar2UniversalBlendShape> targetUniversalBlendShape)
         {
             // 元-名寄せ表-先
-            var query1 = sourceUniversalBlendShapeMap
+            var query1 = sourceUniversalBlendShape
             .Join(
-                targetUniversalBlendShapeMap,
-                source => source.universalBlendShape,
-                target => target.universalBlendShape,
-                (source, target) => new TargetBlendShape
+                targetUniversalBlendShape,
+                source => source.universal?.blendShape,
+                target => target.universal?.blendShape,
+                (source, target) => new BlendShapeRatioMap
                 {
-                    universalBlendShape = source.target,
-                    target = target.target
+                    blendShape = source.blendShape,
+                    ratio = target.universal?.ratio ?? 1f,
+                    taegetBlendShape = target.blendShape
                 }
-            ).Select(x => new TargetBlendShape
+            ).Select(x => new BlendShapeRatioMap
             {
-                universalBlendShape = x.universalBlendShape,
-                target = x.target
+                blendShape = x.blendShape,
+                ratio = x.ratio,
+                taegetBlendShape = x.taegetBlendShape
             }).ToList();
             // 元-名寄せ表
-            var query2 = sourceUniversalBlendShapeMap.Where(source => !query1.Exists(Y => Y.target == source.target)).ToList();
-            //   名寄せ表-先
-            var query3 = targetUniversalBlendShapeMap.Where(target => !query1.Exists(Y => Y.universalBlendShape == target.target)).Select(target => new TargetBlendShape
+            var query2 = sourceUniversalBlendShape.Where(source => !query1.Exists(Y => Y.blendShape == source.blendShape)).Select(source => new BlendShapeRatioMap
             {
-                universalBlendShape = target.target,
-                target = target.universalBlendShape
+                blendShape = source.universal.blendShape,
+                taegetBlendShape = source.blendShape,
+                ratio = source.universal.ratio
+            }).ToList();
+            //   名寄せ表-先
+            var query3 = targetUniversalBlendShape.Where(target => !query1.Exists(Y => Y.blendShape == target.blendShape)).Select(target => new BlendShapeRatioMap
+            {
+                blendShape = target.blendShape,
+                taegetBlendShape = target.universal.blendShape,
+                ratio = target.universal.ratio
             }).ToList();
             query1.AddRange(query2);
             query1.AddRange(query3);
@@ -156,7 +146,8 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 if (frameEnumerable.Count() != 0)
                 {
                     var frame = frameEnumerable.First();
-                    newKeyframe[i] = new Keyframe(frame.time, frame.value * ratio, frame.inTangent, frame.outTangent, frame.inWeight, frame.outWeight);
+                    var val = frame.value * ratio;
+                    newKeyframe[i] = new Keyframe(frame.time, val > 100 ? 100 : val, frame.inTangent, frame.outTangent, frame.inWeight, frame.outWeight);
                     continue;
                 }
                 // 新規カーブ
