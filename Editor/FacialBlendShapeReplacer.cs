@@ -35,8 +35,8 @@ namespace Gokoukotori.FacialBlendShapeReplacer
 
                     // 名称がイコールとなるものはjsonに記載しない
                     // つまりそのまま転記する
-                    var blendShapeMap = universalBlendShapeMap.Find(x => ("blendShape." + x.blendShape) == binding.propertyName);
-                    if (blendShapeMap is null)
+                    var blendShapeMap = universalBlendShapeMap.FindAll(x => ("blendShape." + x.blendShape) == binding.propertyName);
+                    if (blendShapeMap.Any())
                     {
                         var clipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
                         // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
@@ -48,11 +48,11 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                     {
                         path = binding.path,
                         type = binding.type,
-                        propertyName = "blendShape." + blendShapeMap.newBlendShape
+                        propertyName = "blendShape." + blendShapeMap[0].newBlendShape
                     };
                     var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
                     // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
-                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, 1f)));
+                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, blendShapeMap[0].ratio)));
                     continue;
                 }
                 else
@@ -62,11 +62,17 @@ namespace Gokoukotori.FacialBlendShapeReplacer
             }
             return newClip;
         }
-
         public class BlendShapeRatioMap : BlendShapeRatio
         {
-            public string newBlendShape;
+            public BlendShapeRatioMap(string blendShape, float ratio, string newBlendShape)
+            {
+                base.blendShape = blendShape;
+                base.ratio = ratio;
+                this.newBlendShape = newBlendShape;
+            }
+            public readonly string newBlendShape;
         }
+
         /// <summary>
         /// 考える必要があるのは 元-名寄せ表-先
         ///                    元-名寄せ表
@@ -84,32 +90,14 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 targetUniversalBlendShape,
                 source => source.universal?.blendShape,
                 target => target.universal?.blendShape,
-                (source, target) => new BlendShapeRatioMap
-                {
-                    blendShape = source.blendShape,
-                    ratio = (source.universal?.ratio ?? 1f) * (1f + source.universal?.ratio ?? 1f),
-                    newBlendShape = target.blendShape
-                }
-            ).Select(x => new BlendShapeRatioMap
-            {
-                blendShape = x.blendShape,
-                ratio = x.ratio,
-                newBlendShape = x.newBlendShape
-            }).ToList();
+                (source, target) => new BlendShapeRatioMap(source.blendShape, (source.universal?.ratio ?? 1f) * (1f + source.universal?.ratio ?? 1f), target.blendShape))
+                .Select(x => new BlendShapeRatioMap(x.blendShape, x.ratio, x.newBlendShape)).ToList();
             // 元-名寄せ表
-            var query2 = sourceUniversalBlendShape.Where(source => !query1.Exists(Y => Y.blendShape == source.blendShape)).Select(source => new BlendShapeRatioMap
-            {
-                blendShape = source.blendShape,
-                newBlendShape = source.universal.blendShape,
-                ratio = source.universal.ratio
-            }).ToList();
+            var query2 = sourceUniversalBlendShape.Where(source => !query1.Exists(Y => Y.blendShape == source.blendShape))
+            .Select(source => new BlendShapeRatioMap(source.blendShape, source.universal.ratio, source.universal.blendShape)).ToList();
             //   名寄せ表-先
-            var query3 = targetUniversalBlendShape.Where(target => !query1.Exists(Y => Y.blendShape == target.blendShape)).Select(target => new BlendShapeRatioMap
-            {
-                blendShape = target.universal.blendShape,
-                newBlendShape = target.blendShape,
-                ratio = 1f + (1f * target.universal.ratio)
-            }).ToList();
+            var query3 = targetUniversalBlendShape.Where(target => !query1.Exists(Y => Y.blendShape == target.blendShape))
+            .Select(target => new BlendShapeRatioMap(target.universal.blendShape, 1f + (1f * target.universal.ratio), target.blendShape)).ToList();
             query1.AddRange(query2);
             query1.AddRange(query3);
             return query1;
@@ -134,7 +122,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                 var frameEnumerable = curve.keys.Where(x => x.time == newFrameTime[i]);
                 var newFrameEnumerable = newCurve.keys.Where(x => x.time == newFrameTime[i]);
                 // マージ
-                if (frameEnumerable.Count() != 0 && newFrameEnumerable.Count() != 0)
+                if (frameEnumerable.Any() && newFrameEnumerable.Any())
                 {
                     var frame = frameEnumerable.First();
                     var newframe = newFrameEnumerable.First();
@@ -143,7 +131,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                     continue;
                 }
                 // 既存カーブ
-                if (frameEnumerable.Count() != 0)
+                if (frameEnumerable.Any())
                 {
                     var frame = frameEnumerable.First();
                     var val = frame.value * ratio;
@@ -151,7 +139,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                     continue;
                 }
                 // 新規カーブ
-                if (newFrameEnumerable.Count() != 0)
+                if (newFrameEnumerable.Any())
                 {
                     var frame = newFrameEnumerable.First();
                     newKeyframe[i] = new Keyframe(frame.time, frame.value, frame.inTangent, frame.outTangent, frame.inWeight, frame.outWeight);
