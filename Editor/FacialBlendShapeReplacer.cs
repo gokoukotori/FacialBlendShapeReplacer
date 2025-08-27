@@ -35,8 +35,8 @@ namespace Gokoukotori.FacialBlendShapeReplacer
 
                     // 名称がイコールとなるものはjsonに記載しない
                     // つまりそのまま転記する
-                    var blendShapeMap = universalBlendShapeMap.FindAll(x => ("blendShape." + x.blendShape) == binding.propertyName);
-                    if (blendShapeMap.Any())
+                    var blendShapeMap = universalBlendShapeMap.Find(x => ("blendShape." + x.blendShape) == binding.propertyName);
+                    if (blendShapeMap is null)
                     {
                         var clipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
                         // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
@@ -48,11 +48,11 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                     {
                         path = binding.path,
                         type = binding.type,
-                        propertyName = "blendShape." + blendShapeMap[0].newBlendShape
+                        propertyName = "blendShape." + blendShapeMap.newBlendShape
                     };
                     var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
                     // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
-                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, blendShapeMap[0].ratio)));
+                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, blendShapeMap.ratio)));
                     continue;
                 }
                 else
