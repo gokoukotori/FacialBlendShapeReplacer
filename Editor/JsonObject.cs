@@ -14,14 +14,14 @@ namespace Gokoukotori.FacialBlendShapeReplacer
     public class Global
     {
         public string avatarJsonGuid;
-        public List<string> avatar2UniversalMap;
+        public List<string> universalBlendShapeList;
         public List<string> excludeBlendShapeList;
     }
 
     [Serializable]
     public class AvatarBlendShape
     {
-        public List<Avatar2UniversalBlendShape> universalBlendShapeMap;
+        public List<Avatar2UniversalBlendShape> avatar2UniversalMap;
         public List<string> excludeBlendShapeList;
     }
     /// <summary>
