@@ -1,647 +1,1110 @@
 {
-    "notExistblendShapeMap": [
+    "avatar2UniversalMap": [
         {
-            "source": "Option_heart",
-            "target": [
-                {
-                    "universalBlendShape": "Option_shy_1",
-                    "ratio": 1
-                }
-            ]
-        }
-    ],
-    "universalBlendShapeMap": [
-        {
-            "target": "あ",
-            "universalBlendShape": "mouth_A_1"
+            "blendShape": "あ",
+            "universal": {
+                "blendShape": "mouth_A_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "い",
-            "universalBlendShape": "mouth_I_1"
+            "blendShape": "い",
+            "universal": {
+                "blendShape": "mouth_I_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "う",
-            "universalBlendShape": "mouth_U"
+            "blendShape": "う",
+            "universal": {
+                "blendShape": "mouth_U",
+                "ratio": 1
+            }
         },
         {
-            "target": "え",
-            "universalBlendShape": "mouth_E"
+            "blendShape": "え",
+            "universal": {
+                "blendShape": "mouth_E",
+                "ratio": 1
+            }
         },
         {
-            "target": "お",
-            "universalBlendShape": "mouth_O_1"
+            "blendShape": "お",
+            "universal": {
+                "blendShape": "mouth_O_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_1",
-            "universalBlendShape": "eye_jitome_1"
+            "blendShape": "eye_jito_1",
+            "universal": {
+                "blendShape": "eye_jitome_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_1_L",
-            "universalBlendShape": "eye_jitome_1_L"
+            "blendShape": "eye_jito_1_L",
+            "universal": {
+                "blendShape": "eye_jitome_1_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_1_R",
-            "universalBlendShape": "eye_jitome_1_R"
+            "blendShape": "eye_jito_1_R",
+            "universal": {
+                "blendShape": "eye_jitome_1_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_2",
-            "universalBlendShape": "eye_jitome_3"
+            "blendShape": "eye_jito_2",
+            "universal": {
+                "blendShape": "eye_jitome_3",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_2_L",
-            "universalBlendShape": "eye_jitome_3_L"
+            "blendShape": "eye_jito_2_L",
+            "universal": {
+                "blendShape": "eye_jitome_3_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_jito_2_R",
-            "universalBlendShape": "eye_jitome_3_R"
+            "blendShape": "eye_jito_2_R",
+            "universal": {
+                "blendShape": "eye_jitome_3_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_sleepy_2",
-            "universalBlendShape": "eye_sleepy"
+            "blendShape": "eye_sleepy_2",
+            "universal": {
+                "blendShape": "eye_sleepy",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_sleepy_2_L",
-            "universalBlendShape": "eye_sleepy_L"
+            "blendShape": "eye_sleepy_2_L",
+            "universal": {
+                "blendShape": "eye_sleepy_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_sleepy_2_R",
-            "universalBlendShape": "eye_sleepy_R"
+            "blendShape": "eye_sleepy_2_R",
+            "universal": {
+                "blendShape": "eye_sleepy_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_1",
-            "universalBlendShape": "lower_eyelid_up_1"
+            "blendShape": "LowerEyelid_up_1",
+            "universal": {
+                "blendShape": "lower_eyelid_up_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_1_L",
-            "universalBlendShape": "lower_eyelid_up_1_L"
+            "blendShape": "LowerEyelid_up_1_L",
+            "universal": {
+                "blendShape": "lower_eyelid_up_1_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_1_R",
-            "universalBlendShape": "lower_eyelid_up_1_R"
+            "blendShape": "LowerEyelid_up_1_R",
+            "universal": {
+                "blendShape": "lower_eyelid_up_1_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_2",
-            "universalBlendShape": "lower_eyelid_up_2"
+            "blendShape": "LowerEyelid_up_2",
+            "universal": {
+                "blendShape": "lower_eyelid_up_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_2_L",
-            "universalBlendShape": "lower_eyelid_up_2_L"
+            "blendShape": "LowerEyelid_up_2_L",
+            "universal": {
+                "blendShape": "lower_eyelid_up_2_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_up_2_R",
-            "universalBlendShape": "lower_eyelid_up_2_R"
+            "blendShape": "LowerEyelid_up_2_R",
+            "universal": {
+                "blendShape": "lower_eyelid_up_2_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_1",
-            "universalBlendShape": "lower_eyelid_down_1"
+            "blendShape": "LowerEyelid_down_1",
+            "universal": {
+                "blendShape": "lower_eyelid_down_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_1_L",
-            "universalBlendShape": "lower_eyelid_down_1_L"
+            "blendShape": "LowerEyelid_down_1_L",
+            "universal": {
+                "blendShape": "lower_eyelid_down_1_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_1_R",
-            "universalBlendShape": "lower_eyelid_down_1_R"
+            "blendShape": "LowerEyelid_down_1_R",
+            "universal": {
+                "blendShape": "lower_eyelid_down_1_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_2",
-            "universalBlendShape": "lower_eyelid_down_2"
+            "blendShape": "LowerEyelid_down_2",
+            "universal": {
+                "blendShape": "lower_eyelid_down_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_2_L",
-            "universalBlendShape": "lower_eyelid_down_2_L"
+            "blendShape": "LowerEyelid_down_2_L",
+            "universal": {
+                "blendShape": "lower_eyelid_down_2_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_down_2_R",
-            "universalBlendShape": "lower_eyelid_down_2_R"
+            "blendShape": "LowerEyelid_down_2_R",
+            "universal": {
+                "blendShape": "lower_eyelid_down_2_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tsuri",
-            "universalBlendShape": "lower_eyelid_tsuri"
+            "blendShape": "LowerEyelid_tsuri",
+            "universal": {
+                "blendShape": "lower_eyelid_tsuri",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tsuri_L",
-            "universalBlendShape": "lower_eyelid_tsuri_L"
+            "blendShape": "LowerEyelid_tsuri_L",
+            "universal": {
+                "blendShape": "lower_eyelid_tsuri_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tsuri_R",
-            "universalBlendShape": "lower_eyelid_tsuri_R"
+            "blendShape": "LowerEyelid_tsuri_R",
+            "universal": {
+                "blendShape": "lower_eyelid_tsuri_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tare",
-            "universalBlendShape": "lower_eyelid_tare"
+            "blendShape": "LowerEyelid_tare",
+            "universal": {
+                "blendShape": "lower_eyelid_tare",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tare_L",
-            "universalBlendShape": "lower_eyelid_tare_L"
+            "blendShape": "LowerEyelid_tare_L",
+            "universal": {
+                "blendShape": "lower_eyelid_tare_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_tare_R",
-            "universalBlendShape": "lower_eyelid_tare_R"
+            "blendShape": "LowerEyelid_tare_R",
+            "universal": {
+                "blendShape": "lower_eyelid_tare_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_thick",
-            "universalBlendShape": "lower_eyelid_thick"
+            "blendShape": "LowerEyelid_thick",
+            "universal": {
+                "blendShape": "lower_eyelid_thick",
+                "ratio": 1
+            }
         },
         {
-            "target": "LowerEyelid_thin",
-            "universalBlendShape": "lower_eyelid_thin"
+            "blendShape": "LowerEyelid_thin",
+            "universal": {
+                "blendShape": "lower_eyelid_thin",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_look_left",
-            "universalBlendShape": "eye_look_R"
+            "blendShape": "eye_look_left",
+            "universal": {
+                "blendShape": "eye_look_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_look_right",
-            "universalBlendShape": "eye_look_L"
+            "blendShape": "eye_look_right",
+            "universal": {
+                "blendShape": "eye_look_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_OFF",
-            "universalBlendShape": "eye_×"
+            "blendShape": "eye_OFF",
+            "universal": {
+                "blendShape": "eye_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_OFF",
-            "universalBlendShape": "eye_pupil_×"
+            "blendShape": "eye_pupil_OFF",
+            "universal": {
+                "blendShape": "eye_pupil_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_◇_1",
-            "universalBlendShape": "eye_pupil_◇"
+            "blendShape": "eye_pupil_◇_1",
+            "universal": {
+                "blendShape": "eye_pupil_◇",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_◇_1_big",
-            "universalBlendShape": "eye_pupil_◇_big"
+            "blendShape": "eye_pupil_◇_1_big",
+            "universal": {
+                "blendShape": "eye_pupil_◇_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_◇_2",
-            "universalBlendShape": "eye_pupil_◇"
+            "blendShape": "eye_pupil_◇_2",
+            "universal": {
+                "blendShape": "eye_pupil_◇",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_◇_2_big",
-            "universalBlendShape": "eye_pupil_◇_big"
+            "blendShape": "eye_pupil_◇_2_big",
+            "universal": {
+                "blendShape": "eye_pupil_◇_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_+_1",
-            "universalBlendShape": "eye_pupil_+"
+            "blendShape": "eye_pupil_+_1",
+            "universal": {
+                "blendShape": "eye_pupil_+",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_+_1_big",
-            "universalBlendShape": "eye_pupil_+_big"
+            "blendShape": "eye_pupil_+_1_big",
+            "universal": {
+                "blendShape": "eye_pupil_+_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_+_2",
-            "universalBlendShape": "eye_pupil_+"
+            "blendShape": "eye_pupil_+_2",
+            "universal": {
+                "blendShape": "eye_pupil_+",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_+_2_big",
-            "universalBlendShape": "eye_pupil_+_big"
+            "blendShape": "eye_pupil_+_2_big",
+            "universal": {
+                "blendShape": "eye_pupil_+_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_x_1",
-            "universalBlendShape": "eye_pupil_x"
+            "blendShape": "eye_pupil_x_1",
+            "universal": {
+                "blendShape": "eye_pupil_x",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_x_1_big",
-            "universalBlendShape": "eye_pupil_x_big"
+            "blendShape": "eye_pupil_x_1_big",
+            "universal": {
+                "blendShape": "eye_pupil_x_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_x_2",
-            "universalBlendShape": "eye_pupil_x"
+            "blendShape": "eye_pupil_x_2",
+            "universal": {
+                "blendShape": "eye_pupil_x",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_pupil_x_2_big",
-            "universalBlendShape": "eye_pupil_x_big"
+            "blendShape": "eye_pupil_x_2_big",
+            "universal": {
+                "blendShape": "eye_pupil_x_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_OFF_1",
-            "universalBlendShape": "highlight_1_×"
+            "blendShape": "highlight_OFF_1",
+            "universal": {
+                "blendShape": "highlight_1_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_OFF_2",
-            "universalBlendShape": "highlight_2_×"
+            "blendShape": "highlight_OFF_2",
+            "universal": {
+                "blendShape": "highlight_2_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_OFF_3",
-            "universalBlendShape": "highlight_3_×"
+            "blendShape": "highlight_OFF_3",
+            "universal": {
+                "blendShape": "highlight_3_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_OFF_4",
-            "universalBlendShape": "highlight_sub_×"
+            "blendShape": "highlight_OFF_4",
+            "universal": {
+                "blendShape": "highlight_sub_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_2_close",
-            "universalBlendShape": "highlight_1_far"
+            "blendShape": "highlight_2_close",
+            "universal": {
+                "blendShape": "highlight_1_far",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_2_far",
-            "universalBlendShape": "highlight_1_close"
+            "blendShape": "highlight_2_far",
+            "universal": {
+                "blendShape": "highlight_1_close",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_up_1",
-            "universalBlendShape": "highlight_1_up"
+            "blendShape": "highlight_up_1",
+            "universal": {
+                "blendShape": "highlight_1_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_up_2",
-            "universalBlendShape": "highlight_2_up"
+            "blendShape": "highlight_up_2",
+            "universal": {
+                "blendShape": "highlight_2_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_up_3",
-            "universalBlendShape": "highlight_3_up"
+            "blendShape": "highlight_up_3",
+            "universal": {
+                "blendShape": "highlight_3_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_up_4",
-            "universalBlendShape": "highlight_sub_up"
+            "blendShape": "highlight_up_4",
+            "universal": {
+                "blendShape": "highlight_sub_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_down_1",
-            "universalBlendShape": "highlight_1_down"
+            "blendShape": "highlight_down_1",
+            "universal": {
+                "blendShape": "highlight_1_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_down_2",
-            "universalBlendShape": "highlight_2_down"
+            "blendShape": "highlight_down_2",
+            "universal": {
+                "blendShape": "highlight_2_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_down_3",
-            "universalBlendShape": "highlight_3_down"
+            "blendShape": "highlight_down_3",
+            "universal": {
+                "blendShape": "highlight_3_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_down_4",
-            "universalBlendShape": "highlight_sub_down"
+            "blendShape": "highlight_down_4",
+            "universal": {
+                "blendShape": "highlight_sub_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_big_1",
-            "universalBlendShape": "highlight_1_big"
+            "blendShape": "highlight_big_1",
+            "universal": {
+                "blendShape": "highlight_1_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_big_2",
-            "universalBlendShape": "highlight_2_big"
+            "blendShape": "highlight_big_2",
+            "universal": {
+                "blendShape": "highlight_2_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_big_3",
-            "universalBlendShape": "highlight_3_big"
+            "blendShape": "highlight_big_3",
+            "universal": {
+                "blendShape": "highlight_3_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_big_4",
-            "universalBlendShape": "highlight_sub_big"
+            "blendShape": "highlight_big_4",
+            "universal": {
+                "blendShape": "highlight_sub_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_small_1",
-            "universalBlendShape": "highlight_1_small"
+            "blendShape": "highlight_small_1",
+            "universal": {
+                "blendShape": "highlight_1_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_small_2",
-            "universalBlendShape": "highlight_2_small"
+            "blendShape": "highlight_small_2",
+            "universal": {
+                "blendShape": "highlight_2_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_small_3",
-            "universalBlendShape": "highlight_3_small"
+            "blendShape": "highlight_small_3",
+            "universal": {
+                "blendShape": "highlight_3_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "highlight_small_4",
-            "universalBlendShape": "highlight_sub_small"
+            "blendShape": "highlight_small_4",
+            "universal": {
+                "blendShape": "highlight_sub_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_1",
-            "universalBlendShape": "eyelash_main_1_×"
+            "blendShape": "eyelash_OFF_1",
+            "universal": {
+                "blendShape": "eyelash_main_1_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_2",
-            "universalBlendShape": "eyelash_main_2_×"
+            "blendShape": "eyelash_OFF_2",
+            "universal": {
+                "blendShape": "eyelash_main_2_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_4",
-            "universalBlendShape": "eyelash_under_1_×"
+            "blendShape": "eyelash_OFF_4",
+            "universal": {
+                "blendShape": "eyelash_under_1_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_5",
-            "universalBlendShape": "eyelash_under_2_×"
+            "blendShape": "eyelash_OFF_5",
+            "universal": {
+                "blendShape": "eyelash_under_2_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_6",
-            "universalBlendShape": "eyelash_under_3_×"
+            "blendShape": "eyelash_OFF_6",
+            "universal": {
+                "blendShape": "eyelash_under_3_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_8",
-            "universalBlendShape": "eyelash_line_1_x"
+            "blendShape": "eyelash_OFF_8",
+            "universal": {
+                "blendShape": "eyelash_line_1_x",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_9",
-            "universalBlendShape": "eyelash_line_white_x"
+            "blendShape": "eyelash_OFF_9",
+            "universal": {
+                "blendShape": "eyelash_line_white_x",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_10",
-            "universalBlendShape": "eyelash_line_2_x"
+            "blendShape": "eyelash_OFF_10",
+            "universal": {
+                "blendShape": "eyelash_line_2_x",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_OFF_12",
-            "universalBlendShape": "lower_eyelid_×"
+            "blendShape": "eyelash_OFF_12",
+            "universal": {
+                "blendShape": "lower_eyelid_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thick_1",
-            "universalBlendShape": "eyelash_main_1_big"
+            "blendShape": "eyelash_thick_1",
+            "universal": {
+                "blendShape": "eyelash_main_1_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thick_2",
-            "universalBlendShape": "eyelash_main_2_big"
+            "blendShape": "eyelash_thick_2",
+            "universal": {
+                "blendShape": "eyelash_main_2_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thin_1",
-            "universalBlendShape": "eyelash_main_1_small"
+            "blendShape": "eyelash_thin_1",
+            "universal": {
+                "blendShape": "eyelash_main_1_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thin_2",
-            "universalBlendShape": "eyelash_main_2_small"
+            "blendShape": "eyelash_thin_2",
+            "universal": {
+                "blendShape": "eyelash_main_2_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thin_4",
-            "universalBlendShape": "eyelash_under_1_small"
+            "blendShape": "eyelash_thin_4",
+            "universal": {
+                "blendShape": "eyelash_under_1_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thin_5",
-            "universalBlendShape": "eyelash_under_2_small"
+            "blendShape": "eyelash_thin_5",
+            "universal": {
+                "blendShape": "eyelash_under_2_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_thin_6",
-            "universalBlendShape": "eyelash_under_3_small"
+            "blendShape": "eyelash_thin_6",
+            "universal": {
+                "blendShape": "eyelash_under_3_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_big_1",
-            "universalBlendShape": "eyelash_main_1_big"
+            "blendShape": "eyelash_big_1",
+            "universal": {
+                "blendShape": "eyelash_main_1_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_big_2",
-            "universalBlendShape": "eyelash_main_2_big"
+            "blendShape": "eyelash_big_2",
+            "universal": {
+                "blendShape": "eyelash_main_2_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_big_4",
-            "universalBlendShape": "eyelash_under_1_big"
+            "blendShape": "eyelash_big_4",
+            "universal": {
+                "blendShape": "eyelash_under_1_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_big_5",
-            "universalBlendShape": "eyelash_under_2_big"
+            "blendShape": "eyelash_big_5",
+            "universal": {
+                "blendShape": "eyelash_under_2_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_big_6",
-            "universalBlendShape": "eyelash_under_3_big"
+            "blendShape": "eyelash_big_6",
+            "universal": {
+                "blendShape": "eyelash_under_3_big",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_small_1",
-            "universalBlendShape": "eyelash_main_1_small"
+            "blendShape": "eyelash_small_1",
+            "universal": {
+                "blendShape": "eyelash_main_1_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_small_2",
-            "universalBlendShape": "eyelash_main_2_small"
+            "blendShape": "eyelash_small_2",
+            "universal": {
+                "blendShape": "eyelash_main_2_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_small_4",
-            "universalBlendShape": "eyelash_under_1_small"
+            "blendShape": "eyelash_small_4",
+            "universal": {
+                "blendShape": "eyelash_under_1_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_small_5",
-            "universalBlendShape": "eyelash_under_2_small"
+            "blendShape": "eyelash_small_5",
+            "universal": {
+                "blendShape": "eyelash_under_2_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelash_small_6",
-            "universalBlendShape": "eyelash_under_3_small"
+            "blendShape": "eyelash_small_6",
+            "universal": {
+                "blendShape": "eyelash_under_3_small",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelid_line_OFF",
-            "universalBlendShape": "eyelid_line_×"
+            "blendShape": "eyelid_line_OFF",
+            "universal": {
+                "blendShape": "eyelid_line_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_up",
-            "universalBlendShape": "eyelid_middle_up"
+            "blendShape": "eyelashes_middle_up",
+            "universal": {
+                "blendShape": "eyelid_middle_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_up_L",
-            "universalBlendShape": "eyelid_middle_up_L"
+            "blendShape": "eyelashes_middle_up_L",
+            "universal": {
+                "blendShape": "eyelid_middle_up_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_up_R",
-            "universalBlendShape": "eyelid_middle_up_R"
+            "blendShape": "eyelashes_middle_up_R",
+            "universal": {
+                "blendShape": "eyelid_middle_up_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_down",
-            "universalBlendShape": "eyelid_middle_down"
+            "blendShape": "eyelashes_middle_down",
+            "universal": {
+                "blendShape": "eyelid_middle_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_down_L",
-            "universalBlendShape": "eyelid_middle_down_L"
+            "blendShape": "eyelashes_middle_down_L",
+            "universal": {
+                "blendShape": "eyelid_middle_down_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_middle_down_R",
-            "universalBlendShape": "eyelid_middle_down_R"
+            "blendShape": "eyelashes_middle_down_R",
+            "universal": {
+                "blendShape": "eyelid_middle_down_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_up",
-            "universalBlendShape": "eyelid_outer_up"
+            "blendShape": "eyelashes_outer_up",
+            "universal": {
+                "blendShape": "eyelid_outer_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_up_L",
-            "universalBlendShape": "eyelid_outer_up_L"
+            "blendShape": "eyelashes_outer_up_L",
+            "universal": {
+                "blendShape": "eyelid_outer_up_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_up_R",
-            "universalBlendShape": "eyelid_outer_up_R"
+            "blendShape": "eyelashes_outer_up_R",
+            "universal": {
+                "blendShape": "eyelid_outer_up_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_down",
-            "universalBlendShape": "eyelid_outer_down"
+            "blendShape": "eyelashes_outer_down",
+            "universal": {
+                "blendShape": "eyelid_outer_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_down_L",
-            "universalBlendShape": "eyelid_outer_down_L"
+            "blendShape": "eyelashes_outer_down_L",
+            "universal": {
+                "blendShape": "eyelid_outer_down_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_down_R",
-            "universalBlendShape": "eyelid_outer_down_R"
+            "blendShape": "eyelashes_outer_down_R",
+            "universal": {
+                "blendShape": "eyelid_outer_down_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_1_up",
-            "universalBlendShape": "eyelid_tail_1_up"
+            "blendShape": "eyelashes_outer_tail_1_up",
+            "universal": {
+                "blendShape": "eyelid_tail_1_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_1_down",
-            "universalBlendShape": "eyelid_tail_1_down"
+            "blendShape": "eyelashes_outer_tail_1_down",
+            "universal": {
+                "blendShape": "eyelid_tail_1_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_1_long",
-            "universalBlendShape": "eyelid_tail_1_long"
+            "blendShape": "eyelashes_outer_tail_1_long",
+            "universal": {
+                "blendShape": "eyelid_tail_1_long",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_1_short",
-            "universalBlendShape": "eyelid_tail_1_short"
+            "blendShape": "eyelashes_outer_tail_1_short",
+            "universal": {
+                "blendShape": "eyelid_tail_1_short",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_2_thin",
-            "universalBlendShape": "eyelid_tail_2_thin"
+            "blendShape": "eyelashes_outer_tail_2_thin",
+            "universal": {
+                "blendShape": "eyelid_tail_2_thin",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_2_long",
-            "universalBlendShape": "eyelid_tail_2_long"
+            "blendShape": "eyelashes_outer_tail_2_long",
+            "universal": {
+                "blendShape": "eyelid_tail_2_long",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyelashes_outer_tail_2_short",
-            "universalBlendShape": "eyelid_tail_2_short"
+            "blendShape": "eyelashes_outer_tail_2_short",
+            "universal": {
+                "blendShape": "eyelid_tail_2_short",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_inner_wide",
-            "universalBlendShape": "eyelid_inner_wide"
+            "blendShape": "eye_inner_wide",
+            "universal": {
+                "blendShape": "eyelid_inner_wide",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_outer_wide_1",
-            "universalBlendShape": "eyelid_outer_wide_1"
+            "blendShape": "eye_outer_wide_1",
+            "universal": {
+                "blendShape": "eyelid_outer_wide_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "eye_outer_wide_2",
-            "universalBlendShape": "eyelid_outer_wide_2"
+            "blendShape": "eye_outer_wide_2",
+            "universal": {
+                "blendShape": "eyelid_outer_wide_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "A",
-            "universalBlendShape": "mouth_A_1"
+            "blendShape": "A",
+            "universal": {
+                "blendShape": "mouth_A_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "I",
-            "universalBlendShape": "mouth_I_1"
+            "blendShape": "I",
+            "universal": {
+                "blendShape": "mouth_I_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "U",
-            "universalBlendShape": "mouth_U"
+            "blendShape": "U",
+            "universal": {
+                "blendShape": "mouth_U",
+                "ratio": 1
+            }
         },
         {
-            "target": "E",
-            "universalBlendShape": "mouth_E"
+            "blendShape": "E",
+            "universal": {
+                "blendShape": "mouth_E",
+                "ratio": 1
+            }
         },
         {
-            "target": "O",
-            "universalBlendShape": "mouth_O_1"
+            "blendShape": "O",
+            "universal": {
+                "blendShape": "mouth_O_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "A_simple",
-            "universalBlendShape": "mouth_A_1"
+            "blendShape": "A_simple",
+            "universal": {
+                "blendShape": "mouth_A_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "I_simple",
-            "universalBlendShape": "mouth_I_1"
+            "blendShape": "I_simple",
+            "universal": {
+                "blendShape": "mouth_I_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "U_simple",
-            "universalBlendShape": "mouth_U"
+            "blendShape": "U_simple",
+            "universal": {
+                "blendShape": "mouth_U",
+                "ratio": 1
+            }
         },
         {
-            "target": "E_simple",
-            "universalBlendShape": "mouth_E"
+            "blendShape": "E_simple",
+            "universal": {
+                "blendShape": "mouth_E",
+                "ratio": 1
+            }
         },
         {
-            "target": "O_simple",
-            "universalBlendShape": "mouth_O_2"
+            "blendShape": "O_simple",
+            "universal": {
+                "blendShape": "mouth_O_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_smile",
-            "universalBlendShape": "mouth_smile_1"
+            "blendShape": "mouth_smile",
+            "universal": {
+                "blendShape": "mouth_smile_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_smile_L",
-            "universalBlendShape": "mouth_smile_1_L"
+            "blendShape": "mouth_smile_L",
+            "universal": {
+                "blendShape": "mouth_smile_1_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_smile_R",
-            "universalBlendShape": "mouth_smile_1_R"
+            "blendShape": "mouth_smile_R",
+            "universal": {
+                "blendShape": "mouth_smile_1_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_up_simple",
-            "universalBlendShape": "mouth_up"
+            "blendShape": "mouth_up_simple",
+            "universal": {
+                "blendShape": "mouth_up",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_down_simple",
-            "universalBlendShape": "mouth_down"
+            "blendShape": "mouth_down_simple",
+            "universal": {
+                "blendShape": "mouth_down",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_narrow_ALL_L",
-            "universalBlendShape": "mouth_narrow_L"
+            "blendShape": "mouth_narrow_ALL_L",
+            "universal": {
+                "blendShape": "mouth_narrow_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_narrow_ALL_R",
-            "universalBlendShape": "mouth_narrow_R"
+            "blendShape": "mouth_narrow_ALL_R",
+            "universal": {
+                "blendShape": "mouth_narrow_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_wide_ALL_L",
-            "universalBlendShape": "mouth_wide_L"
+            "blendShape": "mouth_wide_ALL_L",
+            "universal": {
+                "blendShape": "mouth_wide_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_wide_ALL_R",
-            "universalBlendShape": "mouth_wide_R"
+            "blendShape": "mouth_wide_ALL_R",
+            "universal": {
+                "blendShape": "mouth_wide_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_Λ",
-            "universalBlendShape": "mouth_Λ_1"
+            "blendShape": "mouth_Λ",
+            "universal": {
+                "blendShape": "mouth_Λ_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_e-_2",
-            "universalBlendShape": "mouth_pokan"
+            "blendShape": "mouth_e-_2",
+            "universal": {
+                "blendShape": "mouth_pokan",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_i-_1",
-            "universalBlendShape": "mouth_I_3"
+            "blendShape": "mouth_i-_1",
+            "universal": {
+                "blendShape": "mouth_I_3",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_i-_2",
-            "universalBlendShape": "mouth_I_2"
+            "blendShape": "mouth_i-_2",
+            "universal": {
+                "blendShape": "mouth_I_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_□_1",
-            "universalBlendShape": "mouth_~□_1"
+            "blendShape": "mouth_□_1",
+            "universal": {
+                "blendShape": "mouth_~□_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_□_2",
-            "universalBlendShape": "mouth_~□_2"
+            "blendShape": "mouth_□_2",
+            "universal": {
+                "blendShape": "mouth_~□_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_ω_open",
-            "universalBlendShape": "mouth_ω_open_1"
+            "blendShape": "mouth_ω_open",
+            "universal": {
+                "blendShape": "mouth_ω_open_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_ω_2_open",
-            "universalBlendShape": "mouth_ω_open_2"
+            "blendShape": "mouth_ω_2_open",
+            "universal": {
+                "blendShape": "mouth_ω_open_2",
+                "ratio": 1
+            }
         },
         {
-            "target": "upper_tooth_OFF",
-            "universalBlendShape": "upper_tooth_×"
+            "blendShape": "upper_tooth_OFF",
+            "universal": {
+                "blendShape": "upper_tooth_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "lower_tooth_OFF",
-            "universalBlendShape": "lower_tooth_×"
+            "blendShape": "lower_tooth_OFF",
+            "universal": {
+                "blendShape": "lower_tooth_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "mouth_tehepero_1_L",
-            "universalBlendShape": "mouth_tehepero_1"
+            "blendShape": "mouth_tehepero_1_L",
+            "universal": {
+                "blendShape": "mouth_tehepero_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "bero_OFF",
-            "universalBlendShape": "bero_×"
+            "blendShape": "bero_OFF",
+            "universal": {
+                "blendShape": "bero_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyebrow_sad",
-            "universalBlendShape": "eyebrow_sad_1"
+            "blendShape": "eyebrow_sad",
+            "universal": {
+                "blendShape": "eyebrow_sad_1",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyebrow_sad_L",
-            "universalBlendShape": "eyebrow_sad_1_L"
+            "blendShape": "eyebrow_sad_L",
+            "universal": {
+                "blendShape": "eyebrow_sad_1_L",
+                "ratio": 1
+            }
         },
         {
-            "target": "eyebrow_sad_R",
-            "universalBlendShape": "eyebrow_sad_1_R"
+            "blendShape": "eyebrow_sad_R",
+            "universal": {
+                "blendShape": "eyebrow_sad_1_R",
+                "ratio": 1
+            }
         },
         {
-            "target": "ear_OFF",
-            "universalBlendShape": "ear_×"
+            "blendShape": "ear_OFF",
+            "universal": {
+                "blendShape": "ear_×",
+                "ratio": 1
+            }
         },
         {
-            "target": "Option_><",
-            "universalBlendShape": "eye_><"
+            "blendShape": "Option_><",
+            "universal": {
+                "blendShape": "eye_><",
+                "ratio": 1
+            }
         },
         {
-            "target": "Option_hachume",
-            "universalBlendShape": "eye_OO"
+            "blendShape": "Option_hachume",
+            "universal": {
+                "blendShape": "eye_OO",
+                "ratio": 1
+            }
         }
     ],
     "excludeBlendShapeList": []
