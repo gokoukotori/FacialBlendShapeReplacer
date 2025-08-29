@@ -45,4 +45,18 @@ internal class BlendShapePreviewNode : IRenderFilterNode
             }
         }
     }
+
+    /// <summary>
+    /// たぶんここでプロキシレンダラーのブレンドシェイプを更新する
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="proxy"></param>
+    public void OnFrame(Renderer original, Renderer proxy)
+    {
+        if (proxy is not SkinnedMeshRenderer skinnedMeshRenderer) return;
+        for (int i = 0; i < _blendShapeCount; i++)
+        {
+            skinnedMeshRenderer.SetBlendShapeWeight(i, _blendShapeWeights[i]);
+        }
+    }
 }

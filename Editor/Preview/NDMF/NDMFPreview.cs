@@ -52,7 +52,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer.Preview.NDMF
                     if (child != null && child.name == "Body")
                     {
                         faceRenderer = child.GetComponentNullable<SkinnedMeshRenderer>();
-                        if (faceRenderer != null) { break; }
+                        if (faceRenderer != null) break;
                     }
                 }
             }
