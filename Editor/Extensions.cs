@@ -10,16 +10,13 @@ using System;
 
 namespace Gokoukotori.FacialBlendShapeReplacer
 {
-    
-    public static class StringExtension
+
+    internal static class PathExtension
     {
         /// <summary>
         /// 絶対パスから Assets/ パスに変換する
         /// </summary>
-        public static string AbsoluteToAssetsPath(this string self)
-        {
-            return self.Replace("\\", "/").Replace(Application.dataPath, "Assets");
-        }
+        public static string AbsoluteToAssetsPath(this string self) => self.Replace("\\", "/").Replace(Application.dataPath, "Assets");
         /// <summary>
         /// Assets/ パスから絶対パスに変換する
         /// </summary>
@@ -30,6 +27,27 @@ namespace Gokoukotori.FacialBlendShapeReplacer
 #else
             return self.Replace("Assets", Application.dataPath);
 #endif
+        }
+    }
+    internal static class ComponentExtension
+    {
+        public static T GetComponentNullable<T>(this GameObject gameObject) where T : Component => gameObject.TryGetComponent<T>(out var component) ? component : null;
+        public static T GetComponentNullable<T>(this Component component) where T : Component => GetComponentNullable<T>(component.gameObject);
+    }
+    internal static class GameObjectExtension
+    {
+        public static string GetFullPath(this GameObject obj) => GetFullPath(obj.transform);
+
+        public static string GetFullPath(this Transform t)
+        {
+            var path = t.name;
+            var parent = t.parent;
+            while (parent)
+            {
+                path = $"{parent.name}/{path}";
+                parent = parent.parent;
+            }
+            return path;
         }
     }
 }

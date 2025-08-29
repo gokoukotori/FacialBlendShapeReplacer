@@ -66,7 +66,7 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         /// <param name="target">変換先アバター</param>
         /// <param name="targetClip">変換対象アニメーションクリップ</param>
         /// <param name="excludeBlendShape">除外するブレンドシェイプ</param>
-        /// <returns>変換されたアニメーションクリップ</returns>
+        /// <returns>ブレンドシェイプに対するウエイト</returns>
         public IReadOnlyList<BlendShapeWeight> ExecuteBlendShapeWeight(AvatarBlendShape source, AvatarBlendShape target, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShape)
         {
             var blendShapeWeightList = new List<BlendShapeWeight>();

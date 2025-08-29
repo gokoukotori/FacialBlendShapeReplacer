@@ -29,8 +29,8 @@ internal class BlendShapePreviewNode : IRenderFilterNode
     {
         var mesh = renderer.sharedMesh;
         _blendShapeCount = mesh.blendShapeCount;
-        _blendShapeNames = new List<string>(_blendShapeCount);
-        _blendShapeWeights = new List<float>(_blendShapeCount);
+        _blendShapeNames = new List<string>();
+        _blendShapeWeights = new List<float>();
         for (int i = 0; i < _blendShapeCount; i++)
         {
             _blendShapeNames.Add(mesh.GetBlendShapeName(i));
