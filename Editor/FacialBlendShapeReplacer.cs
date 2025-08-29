@@ -1,8 +1,6 @@
-using System.Linq;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UnityEditor;
-using UnityEngine;
+using Gokoukotori.FacialBlendShapeReplacer.Entities.Json;
+using Gokoukotori.FacialBlendShapeReplacer.Entities.Unity;
 
 
 namespace Gokoukotori.FacialBlendShapeReplacer
@@ -20,13 +18,11 @@ namespace Gokoukotori.FacialBlendShapeReplacer
         public AnimationClip Execute(AvatarBlendShape source, AvatarBlendShape target, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShape)
         {
             var newClip = new AnimationClip();
-            var bindings = AnimationUtility.GetCurveBindings(targetClip);
             var universalBlendShapeMap = ResolveBlendShape(source.avatar2UniversalMap, target.avatar2UniversalMap);
-            foreach (var binding in bindings)
+            foreach (var binding in AnimationUtility.GetCurveBindings(targetClip))
             {
                 var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
-                // bodyのblendShapeだけ対応
-                // それ以外は何もせず転記
+                // bodyのblendShapeだけ対応、それ以外は何もせず転記
                 if (binding.type == typeof(SkinnedMeshRenderer) && Regex.IsMatch(binding.propertyName, @"^(blendShape\.).*") && binding.path == "Body")
                 {
                     // 対象外は除外
@@ -41,19 +37,20 @@ namespace Gokoukotori.FacialBlendShapeReplacer
                         var clipCurve = AnimationUtility.GetEditorCurve(newClip, binding);
                         // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
                         AnimationUtility.SetEditorCurve(newClip, binding, clipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, clipCurve, 1f)));
-                        continue;
                     }
-                    // 名寄せを行う
-                    var newBinding = new EditorCurveBinding
+                    else
                     {
-                        path = binding.path,
-                        type = binding.type,
-                        propertyName = "blendShape." + blendShapeMap.newBlendShape
-                    };
-                    var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
-                    // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
-                    AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, blendShapeMap.ratio)));
-                    continue;
+                        // 名寄せを行う
+                        var newBinding = new EditorCurveBinding
+                        {
+                            path = binding.path,
+                            type = binding.type,
+                            propertyName = "blendShape." + blendShapeMap.newBlendShape
+                        };
+                        var newClipCurve = AnimationUtility.GetEditorCurve(newClip, newBinding);
+                        // newCurve側のキーが重複して上書きされる可能性があるので重複した場合は値を足す動作に変更する
+                        AnimationUtility.SetEditorCurve(newClip, newBinding, newClipCurve is null ? curve : new AnimationCurve(MergeFrame(curve, newClipCurve, blendShapeMap.ratio)));
+                    }
                 }
                 else
                 {
@@ -62,7 +59,49 @@ namespace Gokoukotori.FacialBlendShapeReplacer
             }
             return newClip;
         }
-        public class BlendShapeRatioMap : BlendShapeRatio
+        /// <summary>
+        /// アニメーションからブレンドシェイプ変換後のウェイトを取得します。
+        /// </summary>
+        /// <param name="source">変換元アバター</param>
+        /// <param name="target">変換先アバター</param>
+        /// <param name="targetClip">変換対象アニメーションクリップ</param>
+        /// <param name="excludeBlendShape">除外するブレンドシェイプ</param>
+        /// <returns>変換されたアニメーションクリップ</returns>
+        public IReadOnlyList<BlendShapeWeight> ExecuteBlendShapeWeight(AvatarBlendShape source, AvatarBlendShape target, AnimationClip targetClip, IReadOnlyList<string> excludeBlendShape)
+        {
+            var blendShapeWeightList = new List<BlendShapeWeight>();
+            var universalBlendShapeMap = ResolveBlendShape(source.avatar2UniversalMap, target.avatar2UniversalMap);
+            foreach (var binding in AnimationUtility.GetCurveBindings(targetClip))
+            {
+                var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
+                // bodyのblendShapeだけ対応、それ以外は何もせず転記
+                if (binding.type == typeof(SkinnedMeshRenderer) && Regex.IsMatch(binding.propertyName, @"^(blendShape\.).*") && binding.path == "Body")
+                {
+                    // 対象外は除外
+                    if (excludeBlendShape.Any(x => ("blendShape." + x) == binding.propertyName)) continue;
+                    if (source.excludeBlendShapeList.Any(x => ("blendShape." + x) == binding.propertyName)) continue;
+
+                    // 名称がイコールとなるものはjsonに記載しない
+                    // つまりそのまま転記する
+                    var blendShapeMap = universalBlendShapeMap.Find(x => ("blendShape." + x.blendShape) == binding.propertyName);
+                    if (blendShapeMap is null)
+                    {
+                        var weight = blendShapeWeightList.Find(x => x.Name == binding.propertyName.Replace("blendShape.", ""));
+                        var frameValue = curve.keys[0].value;
+                        blendShapeWeightList.Add(new BlendShapeWeight(binding.propertyName.Replace("blendShape.", ""), weight is null ? frameValue * blendShapeMap.ratio : weight.Weight + frameValue * blendShapeMap.ratio));
+                    }
+                    else
+                    {
+                        // 名寄せを行う
+                        var weight = blendShapeWeightList.Find(x => x.Name == blendShapeMap.newBlendShape);
+                        var frameValue = curve.keys[0].value;
+                        blendShapeWeightList.Add(new BlendShapeWeight(binding.propertyName.Replace("blendShape.", ""), weight is null ? frameValue * blendShapeMap.ratio : weight.Weight + frameValue * blendShapeMap.ratio));
+                    }
+                }
+            }
+            return blendShapeWeightList;
+        }
+        private class BlendShapeRatioMap : BlendShapeRatio
         {
             public BlendShapeRatioMap(string blendShape, float ratio, string newBlendShape)
             {
